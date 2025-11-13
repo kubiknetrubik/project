@@ -12,17 +12,25 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.project.ui.theme.ProjectTheme
-
+import androidx.compose.material3.Icon
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.offset
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,27 +42,59 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun MyScreen(){
+    var clicks by rememberSaveable { mutableIntStateOf(0) }
+    val addClick: () -> Unit = { clicks++ }
     Box(modifier = Modifier
         .fillMaxSize()
-        .padding(horizontal = 30.dp, vertical = 30.dp)
+        .padding(horizontal = 50.dp, vertical = 30.dp)
     ){
         Box(modifier = Modifier
-            .fillMaxWidth()
+            .width(100.dp)
+            .align(Alignment.Center)
             .aspectRatio(1f)
-            .background(color = colorResource(R.color.middle_button))
-            .clickable{
-
-
-            }
+            .background(color = colorResource(R.color.white))
+            .clickable{addClick()}
         ){
-            Text(
-                text="5",
-                color = colorResource( R.color.purple_700),
-                fontSize = 30.sp,
-                modifier = Modifier
-                    .align(Alignment.Center)
+            Icon(
+                painter = painterResource(R.drawable.dognose),
+                contentDescription = null
             )
         }
+        Text(
+            text = clicks.toString(),
+            fontSize = 30.sp,
+            modifier = Modifier
+                    .align(Alignment.TopEnd)
+        )
+        Icon(
+            painter = painterResource(R.drawable.eye),
+            contentDescription = null,
+            modifier = Modifier
+                .size(30.dp)
+                .offset(x = 80.dp, y = 280.dp)
+        )
+        Icon(
+            painter = painterResource(R.drawable.eye),
+            contentDescription = null,
+            modifier = Modifier
+                .size(30.dp)
+                .offset(x = 225.dp, y = 280.dp)
+        )
+        Icon(
+            painter = painterResource(R.drawable.smile3),
+            contentDescription = null,
+            modifier = Modifier
+                .size(150.dp)
+                .offset(x = 100.dp, y = 410.dp)
+        )
+        Icon(
+            painter = painterResource(R.drawable.ear2),
+            contentDescription = null,
+            modifier = Modifier
+                .size(300.dp)
+                .offset(x = 15.dp, y = 20.dp)
+        )
+
 
 
     }
@@ -62,5 +102,7 @@ private fun MyScreen(){
 @Preview(showBackground = true)
 @Composable
 fun MyScreenPreview() {
+
     MyScreen()
+
 }
