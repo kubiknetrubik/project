@@ -119,7 +119,8 @@ private fun MyScreen(){
             .border(ww, Color.Black)
             .clickable{
                 if (nclick) {
-                    ratio = Random.nextInt(1, 10)
+                    default = Random.nextInt(1, 10)
+                    ratio = default
                     nclick = false
                     ww=5.dp
                 }
